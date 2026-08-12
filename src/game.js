@@ -413,7 +413,7 @@ export function realTimeMechanics(realDiff) {
     }
 
     Object.keys(player.graphData).forEach((graph) => {
-      player.graphData[graph].push({ value: new Decimal(player[graph].toPrecision(2)), TS: new Date().getTime() });
+      player.graphData[graph].push({ value: new Decimal(player[graph].toPrecision(3)), TS: new Date().getTime() });
       player.graphData[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData[graph].shift();
     });
   }
