@@ -917,9 +917,9 @@ window.player = {
   trackGraphs: true,
   graphsInit: false,
   graphData: {
-    antimatter: "",
-    infinityPoints: "",
-    infinities: ""
+    antimatter: [],
+    infinityPoints: [],
+    infinities: []
   },
   graphOptions: {
     trackedTime: 10,

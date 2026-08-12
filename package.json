@@ -2,13 +2,11 @@
   "private": true,
   "scripts": {
     "serve": "node build/check-npm.js && vue-cli-service serve",
-    "build": "npm run build:master",
+    "build": "rm -rf docs && mkdir docs && cp -r dist/* docs/",
     "build:master": "node build/pre-build.js && vue-cli-service build --mode master && node build/post-build.js",
     "build:release": "node build/pre-build.js && vue-cli-service build && node build/post-build.js",
     "build:steam-development": "node build/pre-build.js && vue-cli-service build --mode steam-development",
     "build:steam-release": "node build/pre-build.js && vue-cli-service build --mode steam-release",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
