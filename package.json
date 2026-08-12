@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "serve": "node build/check-npm.js && vue-cli-service serve",
-    "build": "npm run serve",
+    "build": "npm run build:master",
     "build:master": "node build/pre-build.js && vue-cli-service build --mode master && node build/post-build.js",
     "build:release": "node build/pre-build.js && vue-cli-service build && node build/post-build.js",
     "build:steam-development": "node build/pre-build.js && vue-cli-service build --mode steam-development",
