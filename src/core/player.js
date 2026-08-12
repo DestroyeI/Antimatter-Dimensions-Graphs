@@ -210,7 +210,7 @@ window.player = {
     seen: {},
     specialTickerData: {
       uselessNewsClicks: 0,
-      paperclips: DC.D0,
+      paperclips: 0,
       newsQueuePosition: 1000,
       eiffelTowerChapter: 0
     },
