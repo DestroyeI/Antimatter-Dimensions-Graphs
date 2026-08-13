@@ -1,6 +1,14 @@
 # Antimatter Dimensions
 
-## Run
+## Play the Game
+
+The best way to run the game is through the public **Github Pages** link:
+
+```
+https://destroyei.github.io/Antimatter-Dimensions-Graphs/
+```
+
+## Running a Local Server **(UNRECOMMENDED)**
 
 To run the game locally, you will need to install
 [Node.js](https://nodejs.org/) (LTS suggested).
