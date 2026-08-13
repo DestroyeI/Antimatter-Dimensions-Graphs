@@ -141,6 +141,7 @@ export function eternity(force, auto, specialConditions = {}) {
 
   PelleStrikes.eternity.trigger();
 
+  player.graphData.prestiges.eternities.push(Date.now());
   EventHub.dispatch(GAME_EVENT.ETERNITY_RESET_AFTER);
   return true;
 }

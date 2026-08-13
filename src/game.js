@@ -400,25 +400,49 @@ export function realTimeMechanics(realDiff) {
   DarkMatterDimensions.tick(realDiff);
 
 
-  Object.keys(player.graphData.products).forEach((graph) => {
-    player.graphData.products[graph].push({ value: new Decimal(graph == "replicanti" ? player[graph].amount.toPrecision(3) : player[graph].toPrecision(3)), TS: new Date().getTime() });
-    player.graphData.products[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData.products[graph].shift();
-  });
+  if (player.toRecord == 0) {
+    Object.keys(player.graphData.products).forEach((graph) => {
+      player.graphData.products[graph].push({ value: new Decimal(graph == "replicanti" ? player[graph].amount.toPrecision(3) : player[graph].toPrecision(3)), TS: new Date().getTime() });
+      player.graphData.products[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData.products[graph].shift();
+    });
+    player.toRecord = player.recordInterval;
+  }
+  player.toRecord--;
 
   if (player.lastInChallenge == undefined) { player.lastInChallenge = "none"; }
-  if (NormalChallenge.isRunning && player.lastInChallenge != "antimatter") {
-    if (player.lastInChallenge != "none") {
-      player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+  if (NormalChallenge.isRunning) {
+    if (player.lastInChallenge != "antimatter") {
+      if (player.lastInChallenge != "none") {
+        player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+      }
+      player.graphData.challenges.push({t: Date.now(), y: "enter"});
+      player.lastInChallenge = "antimatter";
     }
-    player.graphData.challenges.push({t: Date.now(), y: "enter"});
-    player.lastInChallenge = "antimatter";
-  } else if (InfinityChallenge.isRunning && player.lastInChallenge != "infinity") {
-    if (player.lastInChallenge != "none") {
-      player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+  } else if (InfinityChallenge.isRunning) {
+    if (player.lastInChallenge != "infinity") {
+      if (player.lastInChallenge != "none") {
+        player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+      }
+      player.graphData.challenges.push({t: Date.now(), y: "enter"});
+      player.lastInChallenge = "infinity";
     }
-    player.graphData.challenges.push({t: Date.now(), y: "enter"});
-    player.lastInChallenge = "infinity";
-  } else if (!NormalChallenge.isRunning && !InfinityChallenge.isRunning && player.lastInChallenge != "none") {
+  } else if (EternityChallenge.isRunning) {
+    if (player.lastInChallenge != "eternity") {
+      if (player.lastInChallenge != "none") {
+        player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+      }
+      player.graphData.challenges.push({t: Date.now(), y: "enter"});
+      player.lastInChallenge = "eternity";
+    }
+  } else if (player.dilation.active) {
+    if (player.lastInChallenge != "dilation") {
+      if (player.lastInChallenge != "none") {
+        player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+      }
+      player.graphData.challenges.push({t: Date.now(), y: "enter"});
+      player.lastInChallenge = "dilation";
+    }
+  } else if (!NormalChallenge.isRunning && !InfinityChallenge.isRunning && !EternityChallenge.isRunning && !player.dilation.active && player.lastInChallenge != "none") {
     player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
     player.lastInChallenge = "none";
   }

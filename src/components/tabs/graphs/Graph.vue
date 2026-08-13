@@ -30,7 +30,8 @@ export default {
         boosts: "--color-good-dark",
         galaxies: "--color-good",
         crunches: "--color-infinity",
-        rGalaxies: "--color-replicanti"
+        rGalaxies: "--color-replicanti",
+        eternities: "--color-eternity"
       }
     };
   },
@@ -174,6 +175,10 @@ export default {
             this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-antimatter");
           } else if (InfinityChallenge.isRunning) {
             this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-infinity");
+          } else if (EternityChallenge.isRunning) {
+            this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-eternity");
+          } else if (player.dilation.active) {
+            this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-dilation");
           }
           let x = width - (Date.now() - enter) * (width / (this.trackedTime * 1000));
           this.ctx.fillRect(x, this.resolution - 50, width, this.resolution);
@@ -185,6 +190,12 @@ export default {
           this.ctx.fillRect(0, this.resolution - 50, width, 50);
         } else if (InfinityChallenge.isRunning) {
           this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-infinity");
+          this.ctx.fillRect(0, this.resolution - 50, width, 50);
+        } else if (EternityChallenge.isRunning) {
+          this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-eternity");
+          this.ctx.fillRect(0, this.resolution - 50, width, 50);
+        } else if (player.dilation.active) {
+          this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-dilation");
           this.ctx.fillRect(0, this.resolution - 50, width, 50);
         } else {
           this.ctx.clearRect(0, this.resolution - 50, width, 50);
@@ -266,7 +277,6 @@ export default {
     margin-bottom: 5px;
     width: 1600px;
     height: 395px;
-    margin-left: 5%;
     padding: 0px;
     overflow: hidden;
     transition: 500ms;
@@ -274,6 +284,7 @@ export default {
 
   div.graph.inactive {
     height: 80px;
+    width: 1600px;
   }
 
   .l-graph-shown-btn {

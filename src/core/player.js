@@ -917,46 +917,92 @@ window.player = {
   trackGraphs: true,
   graphsInit: false,
   lastInChallenge: "none",
+  timeTheorems: DC.D0,
+  tachyonParticles: DC.D0,
+  dilatedTime: DC.D0,
+  recordInterval: 6,
+  toRecord: 0,
   graphData: {
     products: {
       antimatter: [],
       infinityPoints: [],
       replicanti: [],
-      infinityPower: []
+      infinityPower: [],
+      eternityPoints: [],
+      timeShards: [],
+      timeTheorems: [],
+      tachyonParticles: [],
+      dilatedTime: []
     },
     prestiges: {
       boosts: [],
       galaxies: [],
       crunches: [],
-      rGalaxies: []
+      rGalaxies: [],
+      eternities: []
     },
     challenges: []
   },
   graphOptions: {
     antimatter: {
       trackedTime: 10,
-      intervals: 40,
+      intervals: 80,
       predictive: false,
       logarithmic: true,
       shown: true
     },
     infinityPoints: {
       trackedTime: 10,
-      intervals: 40,
+      intervals: 80,
       predictive: false,
       logarithmic: true,
       shown: true
     },
     replicanti: {
       trackedTime: 10,
-      intervals: 40,
+      intervals: 80,
       predictive: false,
       logarithmic: true,
       shown: true
     },
     infinityPower: {
       trackedTime: 10,
-      intervals: 40,
+      intervals: 80,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    eternityPoints: {
+      trackedTime: 10,
+      intervals: 80,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    timeShards: {
+      trackedTime: 10,
+      intervals: 80,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    timeTheorems: {
+      trackedTime: 10,
+      intervals: 80,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    tachyonParticles: {
+      trackedTime: 10,
+      intervals: 80,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    dilatedTime: {
+      trackedTime: 10,
+      intervals: 80,
       predictive: false,
       logarithmic: true,
       shown: true

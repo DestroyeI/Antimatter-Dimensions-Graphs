@@ -16,7 +16,7 @@ export default {
         antimatter: {
           label: "Antimatter",
           color: "--color-antimatter",
-          prestiges: ["boosts", "galaxies", "crunches"],
+          prestiges: ["boosts", "galaxies", "crunches", "eternities"],
           unlocked() {
             return true;
           }
@@ -24,7 +24,7 @@ export default {
         infinityPoints: {
           label: "IP",
           color: "--color-infinity",
-          prestiges: [],
+          prestiges: ["eternities"],
           unlocked() {
             return PlayerProgress.infinityUnlocked();
           }
@@ -32,7 +32,7 @@ export default {
         replicanti: {
           label: "Replicanti",
           color: "--color-replicanti",
-          prestiges: ["crunches", "rGalaxies"],
+          prestiges: ["rGalaxies", "crunches", "eternities"],
           unlocked() {
             return PlayerProgress.replicantiUnlocked();
           }
@@ -40,13 +40,60 @@ export default {
         infinityPower: {
           label: "Infinity Power",
           color: "--color-infinity",
-          prestiges: ["crunches"],
+          prestiges: ["crunches", "eternities"],
           unlocked() {
             return player.dimensions.infinity[0].isUnlocked || PlayerProgress.eternityUnlocked();
+          }
+        },
+        eternityPoints: {
+          label: "EP",
+          color: "--color-eternity",
+          prestiges: [],
+          unlocked() {
+            return PlayerProgress.eternityUnlocked();
+          }
+        },
+        timeShards: {
+          label: "Time Shards",
+          color: "--color-eternity",
+          prestiges: ["eternities"],
+          unlocked() {
+            return player.dimensions.time[0].amount.gt(0) || PlayerProgress.realityUnlocked();
+          }
+        },
+        timeTheorems: {
+          label: "Time Theorems",
+          color: "--color-eternity",
+          prestiges: ["eternities"],
+          unlocked() {
+            return player.timestudy.maxTheorem.gt(0) || PlayerProgress.realityUnlocked();
+          }
+        },
+        tachyonParticles: {
+          label: "Tach. Particles",
+          color: "--color-tachyon-particle",
+          prestiges: [],
+          unlocked() {
+            return PlayerProgress.dilationUnlocked();
+          }
+        },
+        dilatedTime: {
+          label: "Dilated Time",
+          color: "--color-dilation",
+          prestiges: ["eternities"],
+          unlocked() {
+            return PlayerProgress.dilationUnlocked();
           }
         }
       }
     };
+  },
+  methods: {
+    update() {
+      player.timeTheorems = player.timestudy.theorem;
+      player.dilatedTime = player.dilation.dilatedTime;
+      player.tachyonParticles = player.dilation.tachyonParticles;
+    }
   }
 };
 </script>
@@ -64,4 +111,8 @@ export default {
 </template>
 
 <style scoped>
+  div.l-graphs-tab {
+    display: flex;
+    justify-content: center;
+  }
 </style>
