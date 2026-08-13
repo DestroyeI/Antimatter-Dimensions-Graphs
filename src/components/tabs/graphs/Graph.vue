@@ -108,7 +108,7 @@ export default {
 
             this.ctx.beginPath();
             this.ctx.moveTo(x, 0);
-            this.ctx.lineTo(x, this.resolution);
+            this.ctx.lineTo(x, this.resolution - 50);
             this.ctx.stroke();
           } else if (timeSince > 600 * 1000) {
             toRemove.push(ts);
@@ -120,6 +120,7 @@ export default {
       this.ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue(this.data.color);
       this.ctx.beginPath();
       let graphMax = new Decimal(1e2);
+      let width = ((player.graphOptions[this.graphID].predictive ? 2 : 3) * this.resolution);
       let points = [];
       for (let i = 0; i < (this.trackedTime * 1000) / player.options.updateRate; i += 100 / this.intervalsSlider) {
         let point = player.graphData.products[this.graphID][player.graphData.products[this.graphID].length - Math.floor(i + 1)] || { value: new Decimal(0) };
@@ -143,17 +144,57 @@ export default {
           }
           value = Math.max(value.div(player.graphOptions[this.graphID].logarithmic ? graphMax.log(10) * 1.1 : graphMax.mul(new Decimal(1.1))).mul(new Decimal(this.resolution)).toNumber(), 0);
         }
-        let width = ((player.graphOptions[this.graphID].predictive ? 2 : 3) * this.resolution);
         let timeSince = Date.now() - point.TS;
         let x = width - timeSince * (width / (this.trackedTime * 1000));
         if (first > 0) {
-          this.ctx.moveTo(x, this.resolution - value);
+          this.ctx.moveTo(x, this.resolution - value - 50);
           first--;
         } else {
-          this.ctx.lineTo(x, this.resolution - value);
+          this.ctx.lineTo(x, this.resolution - value - 50);
         }
       });
 
+      this.ctx.stroke();
+
+      if (player.graphData.challenges.filter(c => {return Math.abs(Date.now() - c.t < this.trackedTime * 1000);}).length > 0) {
+        let enter = Date.now() - this.trackedTime * 1000;
+        player.graphData.challenges.forEach(c => {
+          if (c.y == "enter") {
+            enter = c.t;
+          } else if (c.y == "exit" && Date.now() - c.t < this.trackedTime * 1000) {
+            this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue(`--color-${c.c}`);
+            let x = width - Math.abs(Date.now() - c.t) * (width / (this.trackedTime * 1000));
+            let x2 = width - Math.abs(Date.now() - enter) * (width / (this.trackedTime * 1000));
+            this.ctx.fillRect(x2, this.resolution - 50, x - x2, 50);
+            enter = false;
+          }
+        });
+        if (enter) {
+          if (NormalChallenge.isRunning) {
+            this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-antimatter");
+          } else if (InfinityChallenge.isRunning) {
+            this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-infinity");
+          }
+          let x = width - (Date.now() - enter) * (width / (this.trackedTime * 1000));
+          this.ctx.fillRect(x, this.resolution - 50, width, this.resolution);
+        }
+      } else {
+        if (NormalChallenge.isRunning) {
+          console.log("in Normal Challenge")
+          this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-antimatter");
+          this.ctx.fillRect(0, this.resolution - 50, width, 50);
+        } else if (InfinityChallenge.isRunning) {
+          this.ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--color-infinity");
+          this.ctx.fillRect(0, this.resolution - 50, width, 50);
+        } else {
+          this.ctx.clearRect(0, this.resolution - 50, width, 50);
+        }
+      }
+      
+      this.ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue("--color-good-dark");
+      this.ctx.beginPath();
+      this.ctx.moveTo(0, this.resolution - 49);
+      this.ctx.lineTo(width, this.resolution - 49);
       this.ctx.stroke();
     },
     adjustSliderValueIntervalsSlider(value) {

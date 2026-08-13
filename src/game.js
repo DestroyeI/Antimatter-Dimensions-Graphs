@@ -405,6 +405,23 @@ export function realTimeMechanics(realDiff) {
     player.graphData.products[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData.products[graph].shift();
   });
 
+  if (NormalChallenge.isRunning && player.lastInChallenge != "antimatter") {
+    if (player.lastInChallenge != "none") {
+      player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+    }
+    player.graphData.challenges.push({t: Date.now(), y: "enter"});
+    player.lastInChallenge = "antimatter";
+  } else if (InfinityChallenge.isRunning && player.lastInChallenge != "infinity") {
+    if (player.lastInChallenge != "none") {
+      player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+    }
+    player.graphData.challenges.push({t: Date.now(), y: "enter"});
+    player.lastInChallenge = "infinity";
+  } else if (!NormalChallenge.isRunning && !InfinityChallenge.isRunning && player.lastInChallenge != "none") {
+    player.graphData.challenges.push({t: Date.now(), y: "exit", c: player.lastInChallenge});
+    player.lastInChallenge = "none";
+  }
+
   // When storing real time, skip everything else having to do with production once stats are updated
   if (Enslaved.isStoringRealTime) {
     player.records.realTimePlayed += realDiff;
