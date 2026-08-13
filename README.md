@@ -2,11 +2,9 @@
 
 ## Play the Game
 
-The best way to run the game is through the public **Github Pages** link:
-
-```
-https://destroyei.github.io/Antimatter-Dimensions-Graphs/
-```
+The best way to run the game is through the public
+[**Github Pages**](https://destroyei.github.io/Antimatter-Dimensions-Graphs/) link.
+This will allow you to simply run the modified game in your browser with no setup.
 
 ## Running a Local Server **(UNRECOMMENDED)**
 
@@ -31,3 +29,5 @@ be displayed in your terminal. The server **doesn't** need to be restarted
 after you've made changes - just reload the page. The server **can**
 occasionally crash, so check your terminal from time to time and run `serve`
 again if needed.
+
+This option is only helpful if you plan to **clone and modify** this repository.
