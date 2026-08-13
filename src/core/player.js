@@ -916,6 +916,7 @@ window.player = {
   },
   trackGraphs: true,
   graphsInit: false,
+  lastInChallenge: "none",
   graphData: {
     products: {
       antimatter: [],
