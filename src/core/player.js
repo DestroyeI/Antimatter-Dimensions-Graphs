@@ -917,24 +917,49 @@ window.player = {
   trackGraphs: true,
   graphsInit: false,
   graphData: {
-    antimatter: [],
-    infinityPoints: [],
-    infinities: []
+    products: {
+      antimatter: [],
+      infinityPoints: [],
+      replicanti: [],
+      infinityPower: []
+    },
+    prestiges: {
+      boosts: [],
+      galaxies: [],
+      crunches: [],
+      rGalaxies: []
+    },
+    challenges: []
   },
   graphOptions: {
-    trackedTime: 10,
-    intervals: 40,
-    predictive: false,
-    logarithmic: true,
-    shown: {
-      antimatter: true,
-      infinityPoints: false
+    antimatter: {
+      trackedTime: 10,
+      intervals: 40,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    infinityPoints: {
+      trackedTime: 10,
+      intervals: 40,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    replicanti: {
+      trackedTime: 10,
+      intervals: 40,
+      predictive: false,
+      logarithmic: true,
+      shown: true
+    },
+    infinityPower: {
+      trackedTime: 10,
+      intervals: 40,
+      predictive: false,
+      logarithmic: true,
+      shown: true
     }
-  },
-  graphPrestigesData: {
-    boosts: [],
-    galaxies: [],
-    crunches: []
   }
 };
 

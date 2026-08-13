@@ -121,7 +121,7 @@ export class Galaxy {
 
 function galaxyReset() {
   EventHub.dispatch(GAME_EVENT.GALAXY_RESET_BEFORE);
-  player.graphPrestigesData.galaxies.push(Date.now());
+  player.graphData.prestiges.galaxies.push(Date.now());
   player.galaxies++;
   if (!Achievement(143).isUnlocked || (Pelle.isDoomed && !PelleUpgrade.galaxyNoResetDimboost.canBeApplied)) {
     player.dimensionBoosts = 0;

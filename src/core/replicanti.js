@@ -43,6 +43,7 @@ export function replicantiGalaxy(auto) {
   Replicanti.amount = Achievement(126).isUnlocked && !Pelle.isDoomed
     ? Decimal.pow10(Replicanti.amount.log10() - LOG10_MAX_VALUE * galaxyGain)
     : DC.D1;
+  player.graphData.prestiges.rGalaxies.push(Date.now());
   addReplicantiGalaxies(galaxyGain);
 }
 

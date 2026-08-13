@@ -399,24 +399,11 @@ export function realTimeMechanics(realDiff) {
 
   DarkMatterDimensions.tick(realDiff);
 
-  let lastTime = player.graphData.antimatter[0]?.TS || player.records.gameCreatedTime;
-  let intervalTime = (player.graphOptions.trackedTime * 1000) / player.graphOptions.intervals;
-  let delay = new Date().getTime() - lastTime;
-  if (delay > 2) {
-    if (delay > player.graphOptions.interval * 2.1) {
-      for (let i = 0; i <= Math.min(delay - intervalTime, player.graphOptions.trackedTime * 1000 - intervalTime); i += intervalTime) {
-        Object.keys(player.graphData).forEach((graph) => {
-          player.graphData[graph].push({ value: true, TS: lastTime + i });
-          player.graphData[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData[graph].shift();
-        });
-      }
-    }
 
-    Object.keys(player.graphData).forEach((graph) => {
-      player.graphData[graph].push({ value: new Decimal(player[graph].toPrecision(3)), TS: new Date().getTime() });
-      player.graphData[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData[graph].shift();
-    });
-  }
+  Object.keys(player.graphData.products).forEach((graph) => {
+    player.graphData.products[graph].push({ value: new Decimal(graph == "replicanti" ? player[graph].amount.toPrecision(3) : player[graph].toPrecision(3)), TS: new Date().getTime() });
+    player.graphData.products[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData.products[graph].shift();
+  });
 
   // When storing real time, skip everything else having to do with production once stats are updated
   if (Enslaved.isStoringRealTime) {

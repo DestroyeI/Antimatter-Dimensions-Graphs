@@ -59,7 +59,7 @@ export function bigCrunchReset(
   }
 
   bigCrunchResetValues(enteringAntimatterChallenge);
-  player.graphPrestigesData.crunches.push(Date.now());
+  player.graphData.prestiges.crunches.push(Date.now());
   EventHub.dispatch(GAME_EVENT.BIG_CRUNCH_AFTER);
 }
 
