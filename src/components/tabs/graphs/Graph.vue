@@ -270,7 +270,7 @@ export default {
     margin-top: 2rem;
     margin-bottom: 5px;
     width: 98rem;
-    height: 40rem;
+    height: 39rem;
     padding: 0px;
     overflow: hidden;
     transition: 500ms;
@@ -329,8 +329,8 @@ export default {
     background-color: var(--color-base);
     border-left: 3px solid var(--color-good-dark);
     border-right: 2px solid var(--color-good-dark);
+    width: 56rem;
     height: 39rem;
-    aspect-ratio: 3;
     image-rendering: crisp-edges;
   }
 </style>
