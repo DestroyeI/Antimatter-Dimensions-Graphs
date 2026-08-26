@@ -403,7 +403,7 @@ export function realTimeMechanics(realDiff) {
   if (player.toRecord == 0) {
     Object.keys(player.graphData.products).forEach((graph) => {
       player.graphData.products[graph].push({ value: new Decimal(graph == "replicanti" ? player[graph].amount.toPrecision(3) : player[graph].toPrecision(3)), TS: new Date().getTime() });
-      player.graphData.products[graph].length > (600 * 1000 / player.options.updateRate) && player.graphData.products[graph].shift();
+      while (player.graphData.products[graph].length > ((600 * 1000) / (player.options.updateRate * player.recordInterval))) { player.graphData.products[graph].shift(); }
     });
     player.toRecord = player.recordInterval;
   }

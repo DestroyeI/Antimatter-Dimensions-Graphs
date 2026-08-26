@@ -258,12 +258,6 @@ export default {
           @input="adjustSliderValueTrackedTimeSlider($event)"
         />
       </div>
-      <PrimaryToggleButton
-        v-model="predictive"
-        class="o-primary-btn l-toggle-button l-graphs-opt-button"
-        id="predictive"
-        label="Predictive:"
-      />
     </div>
   </div>
 </template>
@@ -273,18 +267,18 @@ export default {
     position: relative;
     border: 2px solid var(--color-good);
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 2rem;
     margin-bottom: 5px;
-    width: 1600px;
-    height: 395px;
+    width: 98rem;
+    height: 40rem;
     padding: 0px;
     overflow: hidden;
     transition: 500ms;
   }
 
   div.graph.inactive {
-    height: 80px;
-    width: 1600px;
+    height: 8rem;
+    width: 98rem;
   }
 
   .l-graph-shown-btn {
@@ -300,14 +294,14 @@ export default {
   }
 
   .active .l-graph-shown-btn {
-    width: 113px;
-    font-size: 40px;
+    width: 11rem;
+    font-size: 4rem;
     writing-mode: sideways-lr;
   }
 
   .inactive .l-graph-shown-btn {
     width: 101%;
-    font-size: 50px;
+    font-size: 5rem;
   }
 
   .l-graph-buttons {
@@ -322,20 +316,20 @@ export default {
     align-items: center;
     justify-content: center;
     margin: 5px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    height: 80px;
-    width: 300px;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    height: 8rem;
+    width: 30rem;
     border-color: var(--color-good-dark);
   }
 
   canvas.graph {
     position: absolute;
-    right: 312px;
+    right: 31rem;
     background-color: var(--color-base);
     border-left: 3px solid var(--color-good-dark);
     border-right: 2px solid var(--color-good-dark);
-    height: 391px;
+    height: 39rem;
     aspect-ratio: 3;
     image-rendering: crisp-edges;
   }

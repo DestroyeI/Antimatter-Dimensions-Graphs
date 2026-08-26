@@ -990,7 +990,7 @@ window.player = {
       trackedTime: 10,
       intervals: 80,
       predictive: false,
-      logarithmic: true,
+      logarithmic: false,
       shown: true
     },
     tachyonParticles: {
