@@ -269,7 +269,7 @@ export default {
     border-radius: 5px;
     margin-top: 2rem;
     margin-bottom: 5px;
-    width: 98rem;
+    width: max(70vw, 98rem);
     height: 39rem;
     padding: 0px;
     overflow: hidden;
@@ -278,7 +278,7 @@ export default {
 
   div.graph.inactive {
     height: 8rem;
-    width: 98rem;
+    width: max(70vw, 98rem);
   }
 
   .l-graph-shown-btn {
@@ -294,7 +294,7 @@ export default {
   }
 
   .active .l-graph-shown-btn {
-    width: 11rem;
+    width: max(7vw, 11rem);
     font-size: 4rem;
     writing-mode: sideways-lr;
   }
@@ -319,17 +319,17 @@ export default {
     margin-bottom: 2rem;
     font-size: 2rem;
     height: 8rem;
-    width: 30rem;
+    width: max(12.5vw, 25rem);
     border-color: var(--color-good-dark);
   }
 
   canvas.graph {
     position: absolute;
-    right: 31rem;
+    right: max(13vw, 26rem);
     background-color: var(--color-base);
     border-left: 3px solid var(--color-good-dark);
     border-right: 2px solid var(--color-good-dark);
-    width: 56rem;
+    width: max(50vw, 61rem);
     height: 39rem;
     image-rendering: crisp-edges;
   }
