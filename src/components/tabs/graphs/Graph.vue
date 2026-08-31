@@ -223,7 +223,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="data.unlocked()" :class="{active: shown, inactive: !shown, graph: true}">
+  <div v-if="data.unlocked()" :class="{active: shown, inactive: !shown, graph: true}" :id="graphID">
     <PrimaryToggleButton
       v-model="shown"
       class="o-primary-btn l-toggle-button l-graph-shown-btn"
@@ -267,13 +267,11 @@ export default {
     position: relative;
     border: 2px solid var(--color-good);
     border-radius: 5px;
-    margin-top: 2rem;
-    margin-bottom: 5px;
     width: max(70vw, 98rem);
     height: 39rem;
     padding: 0px;
     overflow: hidden;
-    transition: 500ms;
+    transition: 300ms;
   }
 
   div.graph.inactive {
@@ -332,5 +330,62 @@ export default {
     width: max(50vw, 61rem);
     height: 39rem;
     image-rendering: crisp-edges;
+  }
+
+
+  #antimatter.active {
+    order: 1;
+  }
+  #infinityPoints.active {
+    order: 2;
+  }
+  #infinityPower.active {
+    order: 3;
+  }
+  #replicanti.active {
+    order: 4;
+  }
+  #eternityPoints.active {
+    order: 5;
+  }
+  #timeShards.active {
+    order: 6;
+  }
+  #timeTheorems.active {
+    order: 7;
+  }
+  #tachyonParticles.active {
+    order: 8;
+  }
+  #dilatedTime.active {
+    order: 9;
+  }
+
+  #antimatter.inactive {
+    order: 11;
+  }
+  #infinityPoints.inactive {
+    order: 12;
+  }
+  #infinityPower.inactive {
+    order: 13;
+  }
+  #replicanti.inactive {
+    order: 14;
+  }
+  #eternityPoints.inactive {
+    order: 15;
+  }
+  #timeShards.inactive {
+    order: 16;
+  }
+  #timeTheorems.inactive {
+    order: 17;
+  }
+  #tachyonParticles.inactive {
+    order: 18;
+  }
+  #dilatedTime.inactive {
+    order: 19;
   }
 </style>

@@ -115,4 +115,11 @@ export default {
     display: flex;
     justify-content: center;
   }
+
+  div.l-graphs {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+  }
 </style>
